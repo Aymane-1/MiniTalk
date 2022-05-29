@@ -6,7 +6,7 @@
 /*   By: aechafii <aechafii@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 17:32:25 by aechafii          #+#    #+#             */
-/*   Updated: 2022/05/29 21:21:28 by aechafii         ###   ########.fr       */
+/*   Updated: 2022/05/29 21:27:04 by aechafii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void    handler(int signal, siginfo_t *info, void *p)
     static int i;
 
     (void) p;
-    
+    if (g_pid != info->si_pid)
+    {
+        i = 0;
+        ascii_value = 0;
+        g_pid = info->si_pid;
+    }
     ascii_value *= 2;
     if(signal == SIGUSR1)
         ascii_value += 1;
