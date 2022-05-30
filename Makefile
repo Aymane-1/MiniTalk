@@ -1,56 +1,44 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aechafii <aechafii@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/29 18:59:10 by aechafii          #+#    #+#              #
-#    Updated: 2022/05/29 19:01:11 by aechafii         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-NAME = client
+UTILS = minitalk_utils.c
 
-NAME_2 = server
+HEADER = minitalk.h
+HEADER_B = minitalk_bonus.h
 
-SRC_1 = client.c minitalk_utils.c
+SERVER = server
+CLIENT = client
+SRV_SRC = server.c
+CLT_SRC = client.c
 
-SRC_2 = server.c minitalk_utils.c
+SERVER_B = server_bonus
+CLIENT_B = client_bonus
+SRV_SRC_B = server_bonus.c
+CLT_SRC_B = client_bonus.c
 
-BNS_1 = client_bonus.c minitalk_utils.c
+NAME = $(SERVER) $(CLIENT)
+CFLAGS = -Wall -Wextra -Werror
 
-BNS_2 = server_bonus.c minitalk_utils.c
+all: $(NAME)
 
-OBJ_1 = $(SRC_1:.c=.o)
+$(SERVER): $(SRV_SRC) $(UTILS) $(HEADER)
+	$(CC) $(CFLAGS) $(SRV_SRC) $(UTILS) -o $(SERVER)
 
-OBJ_2 = $(SRC_2:.c=.o)
+$(CLIENT): $(CLT_SRC) $(UTILS) $(HEADER)
+	$(CC) $(CFLAGS) $(CLT_SRC) $(UTILS) -o $(CLIENT)
 
-CC = gcc
+bonus: $(SERVER_B) $(CLIENT_B)
 
-FLAGS = -Wall -Wextra -Werror
+$(SERVER_B): $(SRV_SRC_B) $(UTILS) $(HEADER_B)
+	$(CC) $(CFLAGS) $(SRV_SRC_B) $(UTILS) -o $(SERVER_B)
 
-all : $(NAME) $(NAME_2)
+$(CLIENT_B): $(CLT_SRC_B) $(UTILS) $(HEADER_B)
+	$(CC) $(CFLAGS) $(CLT_SRC_B) $(UTILS) -o $(CLIENT_B)
 
-$(NAME) : $(OBJ_1)
-	$(CC) $(FLAGS) $(OBJ_1)  -o $(NAME)
+clean:
+	rm -rf $(SERVER)
+	rm -rf $(CLIENT)
 
-$(NAME_2) : $(OBJ_2)
-	$(CC) $(FLAGS) $(OBJ_2)  -o $(NAME_2)
+fclean: clean
+	rm -rf $(SERVER_B)
+	rm -rf $(CLIENT_B)
 
-%.o : %.c
-	$(CC) $(FLAGS) -c $<
-
-clean :
-	rm -rf $(OBJ_1)
-	rm -rf $(OBJ_2)
-
-fclean : clean
-	rm -rf $(NAME)
-	rm -rf $(NAME_2)
-
-re : fclean all
-
-bonus : 
-	$(CC) $(FLAGS) $(BNS_1)  -o $(NAME)
-	$(CC) $(FLAGS) $(BNS_2)  -o $(NAME_2)
+re: fclean all
