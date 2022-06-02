@@ -6,7 +6,7 @@
 /*   By: aechafii <aechafii@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:37:07 by aechafii          #+#    #+#             */
-/*   Updated: 2022/06/02 18:45:59 by aechafii         ###   ########.fr       */
+/*   Updated: 2022/06/02 21:58:52 by aechafii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	send_signal(int pid, char ch)
 		else
 			check = kill(pid, SIGUSR2);
 		i--;
-		usleep(500);
+		usleep(800);
 	}
 	if (check != 0)
 	{	

@@ -6,7 +6,7 @@
 /*   By: aechafii <aechafii@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 17:31:58 by aechafii          #+#    #+#             */
-/*   Updated: 2022/06/02 18:45:43 by aechafii         ###   ########.fr       */
+/*   Updated: 2022/06/02 21:58:46 by aechafii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	send_signal(int pid, char ch)
 		else
 			check = kill(pid, SIGUSR2);
 		i--;
-		usleep(500);
+		usleep(800);
 	}
 	if (check != 0)
 	{	
@@ -54,6 +54,12 @@ int	main(int argc, char **argv)
 
 	if (argc == 3)
 	{
+		i = 0;
+		while (argv[i] != NULL)
+		{
+			printf("%c\n", argv[1][i]);
+			i++;
+		}
 		server_pid = ft_atoi(argv[1]);
 		i = 0;
 		if (argv[1][0] == '0' || (!is_alldigit(argv[1])))
