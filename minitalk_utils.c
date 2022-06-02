@@ -6,51 +6,51 @@
 /*   By: aechafii <aechafii@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 17:36:06 by aechafii          #+#    #+#             */
-/*   Updated: 2022/05/29 18:33:40 by aechafii         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:34:16 by aechafii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minitalk.h"
+#include "minitalk.h"
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-void    ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(str[i])
-    {
-        ft_putchar(str[i]);
-        i++;
-    }
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
 }
 
-void    ft_putnbr(int n)
+void	ft_putnbr(int n)
 {
-    long nb;
-    
-    nb = n;
-    if(nb < 0)
-    {
-        ft_putchar('-');
-        nb *= -1;
-    }
-    if(nb >= 0 && nb <= 9)
-        ft_putchar(nb + 48);
-    else
-    {
-        ft_putnbr(nb / 10);
-        ft_putnbr(nb % 10);   
-    }
+	long	nb;
+
+	nb = n;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb *= -1;
+	}
+	if (nb >= 0 && nb <= 9)
+		ft_putchar(nb + 48);
+	else
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
 }
 
 int	ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
+	if (c >= '0' && c <= '9')
 		return (1);
 	else
 		return (0);
